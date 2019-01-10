@@ -1,0 +1,45 @@
+<div id="header">
+  <h1>Welcome to
+    <span class="pink-text">FindMe.com</span>
+  </h1>
+  <h4>Use the filter options below to find your perfect partner!</h4>
+  <div id="search_features">
+    <input ng-model="search" type="text" placeholder="Search..">
+  </div>
+  <div id="list_container">
+    <ul id="search_list">
+      <li>
+        <input id="malebtn" name="filterbtn" type="radio" ng-click='clearSelected(); selectedSearch.state=undefined; selectedSearch.female=undefined'
+          ng-model="selectedSearch.male" value="male">
+        <label for="malebtn">Males</label>
+        <div class="check"></div>
+      </li>
+      <li>
+        <input id="femalebtn" name="filterbtn" type="radio" ng-click='clearSelected(); selectedSearch.state=undefined; selectedSearch.male=undefined'
+          ng-model="selectedSearch.female" value="female">
+        <label for="femalebtn">Females</label>
+        <div class="check"></div>
+      </li>
+    </ul>
+    <div id="statelist_container">
+      <span>State:</span>
+      <select id="statelist" class="dropdown-list" name="filterbtn" ng-click='deselect()' ng-model="selectedSearch.state" ng-options="state as state.abbrev for state in states">
+      </select>
+    </div>
+    <div id="clearbtn" class="button" ng-click="selectedSearch=undefined">Clear Filters</div>
+  </div>
+</div>
+<div id="people_container" class="grid-container">
+  <div class="grid-item" ng-repeat="person in people | orderBy : ['name.last', 'name.first'] | filter:filterOnFullName | radioFilter:selectedSearch">
+    <div class="img-card">
+      <a href='#/{{ person.id }}' ng-click='getPerson(person.id)'>
+        <img class="med-img" src='{{ person.picture.medium }}' />
+        <div class="img-card-container">
+          <p>{{ person.name.first | capitalize }}
+            <p>{{ person.name.last | capitalize }}
+            </p>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>

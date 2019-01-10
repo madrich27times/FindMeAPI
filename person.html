@@ -1,0 +1,19 @@
+<div id="person_container">
+  <div id="person_info">
+    <img class="lg-img" src='{{ person.picture.large }}' />
+    <h1 class="capitalize">{{ person.name.first }} {{ person.name.last }}</h1>
+    <ul>
+      <li><strong>Gender:</strong> {{ person.gender | capitalize }}</li>
+      <li><strong>Birthday:</strong> {{person.dob.date | date : format : timezone}}</li>
+      <li><strong>Age:</strong> {{person.dob.age}}</li>
+      <li><strong>Email:</strong> {{ person.email }}</li>
+      <li><strong>Phone:</strong> {{ person.phone }}</li>
+      <li class="capitalize"><strong>Address:</strong> {{ person.location.street }}. {{ person.location.city }}, {{ person.location.state }} {{ person.location.postcode
+        }}
+      </li>
+      <li><strong>Username:</strong> {{ person.login.username }}</li>
+      <li><strong>Password:</strong> {{ person.login.password }}</li>
+    </ul>
+    <a id="back" href='#/'>Back</a>
+  </div>
+</div>
